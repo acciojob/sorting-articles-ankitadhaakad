@@ -1,4 +1,3 @@
-//your JS code here. If required.
 const bands = [
   'The Plot in You',
   'The Devil Wears Prada',
@@ -15,25 +14,26 @@ const bands = [
   'An Old Dog'
 ];
 
-// Helper function to remove leading articles
+// Function to strip leading articles "a", "an", "the" from beginning of a string
 function stripArticle(name) {
+  // Use regex with case-insensitive flag
   return name.replace(/^(a |an |the )/i, '').trim();
 }
 
-// Sort ignoring articles
+// Sort bands ignoring the articles
 bands.sort((a, b) => {
-  const nameA = stripArticle(a).toLowerCase();
-  const nameB = stripArticle(b).toLowerCase();
-  if (nameA < nameB) return -1;
-  if (nameA > nameB) return 1;
+  let aStripped = stripArticle(a).toLowerCase();
+  let bStripped = stripArticle(b).toLowerCase();
+
+  if (aStripped < bStripped) return -1;
+  if (aStripped > bStripped) return 1;
   return 0;
 });
 
-// Display the sorted list
+// Render the sorted list in the <ul id="band">
 const ul = document.getElementById('band');
 bands.forEach(band => {
   const li = document.createElement('li');
   li.textContent = band;
   ul.appendChild(li);
 });
-
